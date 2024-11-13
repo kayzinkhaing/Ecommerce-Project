@@ -9,9 +9,13 @@ class MasterCategoryController extends Controller
 {
     public function storecat(Request $request){
         $validate_data= $request->validate([
-            'category_name'=>'unique:categories|max:100|min:10',
+            'category_name'=>'unique:categories|max:100|min:5',
         ]);
         Category::create($validate_data);
-        return redirect()->back();
+        return redirect()->back()->with('message','Category Added Successfully');
+    }
+    public function showcat($id){
+        $category_info=Category::find(id: $id);
+        return view('admin.category.edit',compact('category_info'));
     }
 }
