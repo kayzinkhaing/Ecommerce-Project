@@ -24,12 +24,13 @@ Edit Category
                         {{ session('message')}}
                     </div>
                 @endif
-                <form action="" method="POST">
+                <form action="{{ route('update.cat',$category_info->id)}}" method="POST">
                     @csrf
+                    @method('PUT')
                     <label for="category_name" class="fw-bold mb-2">Give Name of Your Category</label>
                     <input type="text" class="form-control" name="category_name" value="{{ $category_info->category_name}}">
 
-                    <button type="submit" class="btn btn-primary w-100 mt-2">Add Category</button>
+                    <button type="submit" class="btn btn-primary w-100 mt-2">Update Category</button>
                 </form>
             </div>
         </div>

@@ -9,6 +9,11 @@ Manage Category
             <div class="card-header">
                 <h5 class="card-title mb-0">All Category </h5>
             </div>
+            @if (session('message'))
+                    <div class="alert alert-success my-2">
+                        {{ session('message')}}
+                    </div>
+                @endif
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table">
@@ -25,7 +30,12 @@ Manage Category
                                 <td>{{ $cat->id }}</td>
                                 <td>{{ $cat->category_name }}</td>
                                 <td><a href="{{ route('show.cat',$cat->id)}}" class="btn btn-info">Edit</a>
-                                <a href="" class="btn btn-danger">Delete</a></td>
+                                <form action="{{ route('delete.cat',$cat->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" value="Delete" class="btn btn-danger">
+                                </form>
+                                </td>
                             </tr>
                             @endforeach
                             
